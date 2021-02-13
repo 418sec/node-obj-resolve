@@ -161,5 +161,15 @@ describe("resolve", function () {
     actual = resolve(obj, 'part5.parent.name')
     expect(actual).to.equal(expected);
   });
+  it('should not overwrite prototype properties', function () {
+    var expected = undefined,
+        actual
+
+    actual = resolve(obj, '__proto__.polluted', true)
+    expect(actual.polluted).to.equal(expected);
+
+    actual = resolve(obj, 'constructor.prototype.polluted', true)
+    expect(actual.polluted).to.equal(expected);
+  });
   
 });

@@ -40,6 +40,10 @@ module.exports = function resolve (obj, path, value) {
       obj = {};
     }
     if (settingAValue && isLastElement) {
+      if (obj === Object.prototype) {
+        continue;
+      }
+
       // set the value and we're done
       obj[k] = value;
       return value;
